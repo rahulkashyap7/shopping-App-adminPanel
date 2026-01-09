@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "901228709580",
+    "project_id": "shopping-app-1e6f6",
+    "storage_bucket": "shopping-app-1e6f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901228709580:android:a6192c603f90f301e56469",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_admin_panel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901228709580-rcv27vhth1mu0d5m0qnmrb0p8osrmhtc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4VES1fMMmc52yLcPSgmfXkyBVRlGPG7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901228709580-rcv27vhth1mu0d5m0qnmrb0p8osrmhtc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901228709580-ld7g181ge4tcaomv7l1ssq8bt3pko2hc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kashyapapp.shoppingApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901228709580:android:bb7689b6206f770ce56469",
+        "android_client_info": {
+          "package_name": "com.kashyap_app.shopping_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901228709580-vr5ncadfu5rpdj32oqcmtfjs9rm3rep9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kashyap_app.shopping_app",
+            "certificate_hash": "5ba55a6346c4d5072e1dd08c83fa99f7cd95b38a"
+          }
+        },
+        {
+          "client_id": "901228709580-rcv27vhth1mu0d5m0qnmrb0p8osrmhtc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4VES1fMMmc52yLcPSgmfXkyBVRlGPG7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901228709580-rcv27vhth1mu0d5m0qnmrb0p8osrmhtc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "901228709580-ld7g181ge4tcaomv7l1ssq8bt3pko2hc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kashyapapp.shoppingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
