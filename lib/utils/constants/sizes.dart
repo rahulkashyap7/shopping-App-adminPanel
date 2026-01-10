@@ -69,4 +69,8 @@ class RSizes {
 
   // Grid view spacing
   static const double gridViewSpacing = 16.0;
+
+  // Responsive Sizes
+  static const double desktopScreenSize = 1366;
+  static const double tabletScreenSize = 768;
 }

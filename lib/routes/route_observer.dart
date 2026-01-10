@@ -10,6 +10,7 @@ class RouteObserver extends GetObserver {
 
     if (previousRoute != null) {
       // Check the route name and update the active item in the sidebar accordingly
+
       if (var routeName in RRoutes.sideMenuItems) {
         if (previousRoute.settings.name == routeName) {
           sidebarController.activeItem.value = routeName;

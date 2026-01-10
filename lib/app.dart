@@ -1,3 +1,5 @@
+import 'package:ecommerce_admin_panel/common/widgets/layouts/templates/site_layout.dart';
+import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_design.dart';
 import 'package:ecommerce_admin_panel/routes/app_routes.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
 import 'package:ecommerce_admin_panel/utils/constants/text_strings.dart';
@@ -19,6 +21,16 @@ class App extends StatelessWidget {
       initialRoute: RRoutes.firstScreen,
       unknownRoute: GetPage(name: '/page-not-found', page: () => Scaffold(body: Center(child: Text('Page Not Found')))),
     );
+  }
+}
+
+class ResponsiveDesignScreen extends StatelessWidget {
+  const ResponsiveDesignScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const RSiteTemplate(desktop: Desktop(), tablet: Tablet(), mobile:
+    Mobile())
   }
 }
 
