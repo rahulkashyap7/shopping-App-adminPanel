@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:get_x/get.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../constants/sizes.dart';
+
 class RDeviceUtils {
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
@@ -102,6 +104,17 @@ class RDeviceUtils {
     return Platform.isAndroid;
   }
 
+  static bool isDesktopScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width >= RSizes.desktopScreenSize;
+  }
+
+  static bool isTabletScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize && MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
+  }
+
+  static bool isMobileScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize && MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
+  }
   static void launchUrl(String url) async{
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);

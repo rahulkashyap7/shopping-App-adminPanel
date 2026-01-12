@@ -1,10 +1,12 @@
+import 'package:ecommerce_admin_panel/common/widgets/layouts/header/header.dart';
 import 'package:flutter/material.dart';
 import '../../custom_shapes/container/rounded_container.dart';
 
 class DesktopLayout extends StatelessWidget {
-  const DesktopLayout({super.key, this.body});
+  DesktopLayout({super.key, this.body});
 
   final Widget? body;
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +19,7 @@ class DesktopLayout extends StatelessWidget {
             child: Column(
             children: [
               // HEADER
-              RRoundedContainer(
-                width: double.infinity,
-                height: 75,
-                backgroundColor: Colors.yellow.withOpacity(0.2),
-              ),
+              const RHeader(scaffoldKey: null,),
 
               // BODY
               body ?? const SizedBox()

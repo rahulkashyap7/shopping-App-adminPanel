@@ -1,11 +1,12 @@
+import 'package:ecommerce_admin_panel/common/widgets/custom_shapes/container/rounded_container.dart';
 import 'package:ecommerce_admin_panel/common/widgets/layouts/templates/site_layout.dart';
-import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_design.dart';
 import 'package:ecommerce_admin_panel/routes/app_routes.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
 import 'package:ecommerce_admin_panel/utils/constants/text_strings.dart';
 import 'package:ecommerce_admin_panel/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x/get.dart';
+import 'app.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -29,62 +30,228 @@ class ResponsiveDesignScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RSiteTemplate(desktop: Desktop(), tablet: Tablet(), mobile:
-    Mobile())
+    return const RSiteTemplate(useLayout: false, desktop: Desktop(), tablet:
+    Tablet(), mobile: Mobile());
   }
 }
 
-class FirstScreen extends StatelessWidget {
-  const FirstScreen({super.key});
+class Desktop extends StatelessWidget {
+  const Desktop({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('First Screen'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+    return Column(
+      children: [
+        /// First Row
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Simple Navigation: Default Flutter Navigator vs GetX Navigation',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Expanded(
+              child: Column(
+                children: [
+                  RRoundedContainer(
+                    height: 450,
+                    backgroundColor: Colors.blue.withOpacity(0.2),
+                    child: const Center(child: Text('BOX 1')),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  RRoundedContainer(
+                    height: 215,
+                    backgroundColor: Colors.orange.withOpacity(0.2),
+                    child: Center(child: Text('BOX 2')),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: RRoundedContainer(
+                height: 450,
+                backgroundColor: Colors.yellow.withOpacity(0.2),
+                child: Center(child: Text('BOX 3')),
+              ),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(onPressed: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const SecondScreen(),)
-                );
-              },
-               child: Text('Default Navigation')),
+            Expanded(
+              child: RRoundedContainer(
+                height: 450,
+                backgroundColor: Colors.yellow.withOpacity(0.2),
+                child: Center(child: Text('BOX 4')),
+              ),
             ),
-            SizedBox(height: 15),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(onPressed: () => Get.to(() => const SecondScreen()),
-                child: const Text('GetX Navigation')),
-            )
+            const SizedBox(height: 20),
           ],
         ),
-      ),
+        /// Second Row
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RRoundedContainer(
+              height: 190,
+              width: double.infinity,
+              backgroundColor: Colors.red.withOpacity(0.2),
+              child: const Center(child: Text('BOX 5')),
+            ),
+            const SizedBox(height: 20),
+            RRoundedContainer(
+              height: 190,
+              width: double.infinity,
+              backgroundColor: Colors.red.withOpacity(0.2),
+              child: const Center(child: Text('BOX 6')),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({super.key});
+
+class Tablet extends StatelessWidget {
+  const Tablet({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Screen'),
-        centerTitle: true,
-      ),
+    return Column(
+      children: [
+        /// First Row
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  RRoundedContainer(
+                    height: 450,
+                    backgroundColor: Colors.blue.withOpacity(0.2),
+                    child: const Center(child: Text('BOX 1')),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  RRoundedContainer(
+                    height: 215,
+                    backgroundColor: Colors.orange.withOpacity(0.2),
+                    child: Center(child: Text('BOX 2')),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: RRoundedContainer(
+                height: 450,
+                backgroundColor: Colors.yellow.withOpacity(0.2),
+                child: Center(child: Text('BOX 3')),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: RRoundedContainer(
+                height: 450,
+                backgroundColor: Colors.yellow.withOpacity(0.2),
+                child: Center(child: Text('BOX 4')),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 20),
+
+        /// Second Row
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RRoundedContainer(
+              height: 190,
+              width: double.infinity,
+              backgroundColor: Colors.red.withOpacity(0.2),
+              child: const Center(child: Text('BOX 5')),
+            ),
+            const SizedBox(height: 20),
+            RRoundedContainer(
+              height: 190,
+              width: double.infinity,
+              backgroundColor: Colors.red.withOpacity(0.2),
+              child: const Center(child: Text('BOX 6')),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+
+class Mobile extends StatelessWidget {
+  const Mobile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        /// First Row
+        RRoundedContainer(
+          height: 450,
+          width: double.infinity,
+          backgroundColor: Colors.blue.withOpacity(0.2),
+          child: const Center(child: Text('BOX 1')),
+        ),
+        const SizedBox(height: 20),
+        RRoundedContainer(
+          height: 215,
+          width: double.infinity,
+          backgroundColor: Colors.orange.withOpacity(0.2),
+          child: const Center(child: Text('BOX 2')),
+        ),
+        const SizedBox(height: 20),
+        RRoundedContainer(
+          height: 215,
+          width: double.infinity,
+          backgroundColor: Colors.red.withOpacity(0.2),
+          child: const Center(child: Text('BOX 3')),
+        ),
+        const SizedBox(height: 20),
+        RRoundedContainer(
+          height: 215,
+          width: double.infinity,
+          backgroundColor: Colors.green.withOpacity(0.2),
+          child: const Center(child: Text('BOX 4')),
+        ),
+        const SizedBox(height: 20),
+
+        /// Second Row
+        RRoundedContainer(
+          height: 190,
+          width: double.infinity,
+          backgroundColor: Colors.red.withOpacity(0.2),
+          child: const Center(child: Text('BOX 5')),
+        ),
+        const SizedBox(height: 20),
+        RRoundedContainer(
+          height: 190,
+          width: double.infinity,
+          backgroundColor: Colors.red.withOpacity(0.2),
+          child: const Center(child: Text('BOX 6')),
+        ),
+      ],
     );
   }
 }
