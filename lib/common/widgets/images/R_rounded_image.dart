@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
+import 'dart:typed_data';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/constants/enums.dart';
@@ -61,20 +61,21 @@ class RRoundedImage extends StatelessWidget {
         imageWidget = _buildImageWidget();
         break;
       case ImageType.memory:
-        imageWidget = _buildImageWidget();
+        imageWidget = _buildMemoryImage();
         break;
       case ImageType.file:
-        imageWidget = _buildImageWidget();
+        imageWidget = _buildFileImage();
         break;
       case ImageType.asset:
-        imageWidget = _buildImageWidget();
+        imageWidget = _buildAssetImage();
         break;
     }
 
     // Apply ClipRReact directly to the image widget
     return ClipRRect(
-      borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) :
-      BorderRadius.zero,
+      borderRadius: applyImageRadius
+          ? BorderRadius.circular(borderRadius)
+          : BorderRadius.zero,
       child: imageWidget,
     );
   }
@@ -88,7 +89,8 @@ class RRoundedImage extends StatelessWidget {
         color: overlayColor,
         imageUrl: image!,
         errorWidget: (context, url, error) => const Icon(Icons.error),
-        progressIndicatorBuilder: (context, url, downloadProgress) => RShimmerEffect(width: width, height: height),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            RShimmerEffect(width: width, height: height),
       );
     } else {
       // Return an empty container if no image is provided
@@ -98,10 +100,10 @@ class RRoundedImage extends StatelessWidget {
 
   // Function to build the memory image widget
   Widget _buildMemoryImage() {
-    if (memoryImage != null){
+    if (memoryImage != null) {
       // Display image from memory using Image widget
-      return Image(fit: fit, image: MemoryImage(memoryImage!), color:
-      overlayColor);
+      return Image(
+          fit: fit, image: MemoryImage(memoryImage!), color: overlayColor);
     } else {
       // Return an empty container if no longer is provided
       return Container();
@@ -109,7 +111,7 @@ class RRoundedImage extends StatelessWidget {
   }
 
   // Function to build the asset image widget
-  Widget _buildFileImage(){
+  Widget _buildFileImage() {
     if (file != null) {
       // Display image from assets using image widget
       return Image(fit: fit, image: FileImage(file!), color: overlayColor);
@@ -130,4 +132,3 @@ class RRoundedImage extends StatelessWidget {
     }
   }
 }
-

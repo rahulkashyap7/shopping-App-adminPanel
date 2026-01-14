@@ -8,7 +8,6 @@ class DesktopLayout extends StatelessWidget {
 
   final Widget? body;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,16 +15,18 @@ class DesktopLayout extends StatelessWidget {
         children: [
           Expanded(child: RSidebar()),
           Expanded(
-            flex: 5,
-            child: Column(
-            children: [
-              // HEADER
-              const RHeader(scaffoldKey: null,),
+              flex: 5,
+              child: Column(
+                children: [
+                  // HEADER
+                  const RHeader(
+                    scaffoldKey: null,
+                  ),
 
-              // BODY
-              body ?? const SizedBox()
-            ],
-          ))
+                  // BODY
+                  body ?? const SizedBox()
+                ],
+              ))
         ],
       ),
     );

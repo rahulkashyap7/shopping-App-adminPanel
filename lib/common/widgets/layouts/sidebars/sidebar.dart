@@ -24,7 +24,11 @@ class RSidebar extends StatelessWidget {
           child: Column(
             children: [
               // Image
-              RCircularImage(width: 100, height: 100, image: RImages.darkAppLogo, backgroundColor: Colors.transparent),
+              RCircularImage(
+                  width: 100,
+                  height: 100,
+                  image: RImages.darkAppLogo,
+                  backgroundColor: Colors.transparent),
               SizedBox(height: RSizes.spaceBtwSections),
               Padding(
                 padding: const EdgeInsets.all(RSizes.md),
@@ -32,13 +36,26 @@ class RSidebar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('MENU', style: Theme.of(context).textTheme
-                        .bodySmall!.apply(letterSpacingDelta: 1.2)),
+                    Text('MENU',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .apply(letterSpacingDelta: 1.2)),
 
                     // MENU ITEMS
-                    RMenuItem(route: RRoutes.firstScreen, icon: Iconsax.status, itemName: 'Dashboard'),
-                    RMenuItem(route: RRoutes.secondScreen, icon: Iconsax.image, itemName: 'Media'),
-                    RMenuItem(route: RRoutes.responsiveDesignTutorialScreen, icon: Iconsax.picture_frame, itemName: 'Banner',)
+                    RMenuItem(
+                        route: RRoutes.firstScreen,
+                        icon: Iconsax.status,
+                        itemName: 'Dashboard'),
+                    RMenuItem(
+                        route: RRoutes.secondScreen,
+                        icon: Iconsax.image,
+                        itemName: 'Media'),
+                    RMenuItem(
+                      route: RRoutes.responsiveDesignTutorialScreen,
+                      icon: Iconsax.picture_frame,
+                      itemName: 'Banner',
+                    )
                   ],
                 ),
               )
@@ -49,4 +66,3 @@ class RSidebar extends StatelessWidget {
     );
   }
 }
-

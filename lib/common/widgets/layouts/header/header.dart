@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
+import 'package:ecommerce_admin_panel/utils/constants/enums.dart';
 import 'package:ecommerce_admin_panel/utils/constants/image_strings.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:ecommerce_admin_panel/utils/device/device_utility.dart';
@@ -51,7 +52,7 @@ class RHeader extends StatelessWidget implements PreferredSizeWidget {
                   width: 40,
                   padding: 2,
                   height: 40,
-                  imageType: Image.asset,
+                  imageType: ImageType.asset,
                   image: RImages.userPic
               ),
               SizedBox(width: RSizes.sm),

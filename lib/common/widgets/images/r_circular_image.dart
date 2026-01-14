@@ -99,6 +99,17 @@ class RCircularImage extends StatelessWidget {
   }
 
   // Function to build the asset image widget
+  Widget _buildFileImage(){
+    if (file != null) {
+      // Display image from assets using image widget
+      return Image(fit: fit, image: FileImage(file!), color: overlayColor);
+    } else {
+      // Return an empty container if no longer is provided
+      return Container();
+    }
+  }
+
+  // Function to build the asset image widget
   Widget _buildAssetImage() {
     if (image != null) {
       return Image(fit: fit, image: AssetImage(image!), color: overlayColor);
