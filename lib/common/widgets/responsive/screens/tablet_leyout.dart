@@ -1,6 +1,8 @@
 import 'package:ecommerce_admin_panel/common/widgets/layouts/header/header.dart';
 import 'package:flutter/material.dart';
 
+import '../../layouts/sidebars/sidebar.dart';
+
 class TabletLayout extends StatelessWidget {
   TabletLayout({super.key, this.body});
 
@@ -12,7 +14,7 @@ class TabletLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-        drawer: const Drawer(),
+        drawer: const RSidebar(),
         appBar: RHeader(scaffoldKey: scaffoldKey),
         body: body ?? const SizedBox()
     );

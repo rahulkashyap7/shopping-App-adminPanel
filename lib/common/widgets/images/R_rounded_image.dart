@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/constants/enums.dart';
