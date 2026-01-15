@@ -1,10 +1,6 @@
 import 'package:ecommerce_admin_panel/common/widgets/layouts/sidebars/sidebar_controller.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_x/get.dart';
-import 'package:get_x/get_core/src/get_main.dart';
-import 'package:get_x/get_instance/src/extension_instance.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 

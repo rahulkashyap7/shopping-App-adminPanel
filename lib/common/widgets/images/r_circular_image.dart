@@ -3,11 +3,8 @@ import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helpers/helper_function.dart';
 import '../../../utils/popups/shimmer.dart';
 
 class RCircularImage extends StatelessWidget {

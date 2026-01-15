@@ -1,17 +1,12 @@
 
 class RRoutes {
-  static const firstScreen = '/';
-  static const secondScreen = '/second-screen/';
-  static const secondScreenWithUID = '/second-screen/:userId';
-  static const responsiveDesignTutorialScreen = '/responsive-design-tutorial/';
+  static const login = '/login';
+  static const forgetPassword = '/forget-password';
+  static const resetPassword = '/reset-password';
 
   static List sidebarMenuItems = [
-    firstScreen, responsiveDesignTutorialScreen
   ];
 
-  static const login = '/login';
-  static const forgetPassword = '/forgetPassword';
-  static const resetPassword = '/resetPassword';
   static const dashboard = '/dashboard';
   static const media = '/dashboard';
 

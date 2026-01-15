@@ -44,15 +44,15 @@ class RSidebar extends StatelessWidget {
 
                     // MENU ITEMS
                     RMenuItem(
-                        route: RRoutes.firstScreen,
+                        route: RRoutes.login,
                         icon: Iconsax.status,
                         itemName: 'Dashboard'),
                     RMenuItem(
-                        route: RRoutes.secondScreen,
+                        route: RRoutes.forgetPassword,
                         icon: Iconsax.image,
                         itemName: 'Media'),
                     RMenuItem(
-                      route: RRoutes.responsiveDesignTutorialScreen,
+                      route: RRoutes.resetPassword,
                       icon: Iconsax.picture_frame,
                       itemName: 'Banner',
                     )
