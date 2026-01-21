@@ -1,4 +1,7 @@
+import 'package:ecommerce_admin_panel/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get_x/get.dart';
+import 'package:get_x/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
@@ -45,7 +48,8 @@ class RLoginForm extends StatelessWidget {
                 ),
 
                 /// Forget Password
-                TextButton(onPressed: () {}, child: Text(RTexts.forgetPassword)),
+                TextButton(onPressed: () => Get.toNamed(RRoutes.forgetPassword), child:
+                Text(RTexts.forgetPassword)),
               ],
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

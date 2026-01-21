@@ -16,7 +16,7 @@ class RImages {
   static const String onBoardingImage3 = 'assets/images/animations/shopping-cart.json';
 
   // Verify Screen
-  static const String verifyEmail = 'assets/images/on_boarding_images/verifyEmail.png';
+  static const String verifyEmail = 'assets/images/animations/sammy-line-man-receives-a-mail.png';
   static const String confirmed = 'assets/images/on_boarding_images/Confirmed.png';
 
   // Payment Methods
