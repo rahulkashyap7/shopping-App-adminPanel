@@ -2,7 +2,6 @@ import 'package:ecommerce_admin_panel/common/widgets/responsive/responsive_desig
 import 'package:ecommerce_admin_panel/common/widgets/responsive/screens/desktop_layout.dart';
 import 'package:ecommerce_admin_panel/common/widgets/responsive/screens/mobile_layout.dart';
 import 'package:ecommerce_admin_panel/common/widgets/responsive/screens/tablet_leyout.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RSiteTemplate extends StatelessWidget {

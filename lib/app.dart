@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       theme: RAppTheme.lightTheme,
       darkTheme: RAppTheme.darkTheme,
       getPages: RAppRoute.pages,
-      initialRoute: RRoutes.login,
+      initialRoute: RRoutes.dashboard,
       unknownRoute: GetPage(
           name: '/page-not-found',
           page: () => Scaffold(body: Center(child: Text('Page Not Found')))),
