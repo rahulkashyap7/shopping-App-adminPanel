@@ -9,8 +9,13 @@ import '../features/authentication/screens/login/login.dart';
 class RAppRoute {
   static final List<GetPage> pages = [
     GetPage(name: RRoutes.login, page: () => const LoginScreen()),
-    GetPage(name: RRoutes.forgetPassword, page: () => const ForgetPasswordScreen()),
-    GetPage(name: RRoutes.resetPassword, page: () => const ResetPasswordScreen()),
-    GetPage(name: RRoutes.dashboard, page: () => const DashboardScreen(), middlewares: [RRouteMiddleware()]),
-    ];
+    GetPage(
+        name: RRoutes.forgetPassword, page: () => const ForgetPasswordScreen()),
+    GetPage(
+        name: RRoutes.resetPassword, page: () => const ResetPasswordScreen()),
+    GetPage(
+        name: RRoutes.dashboard,
+        page: () => const DashboardScreen(),
+        middlewares: [RRouteMiddleware()]),
+  ];
 }

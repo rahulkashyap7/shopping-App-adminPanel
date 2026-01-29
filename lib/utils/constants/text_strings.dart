@@ -2,6 +2,9 @@
 
 class RTexts {
 
+  // Admin email and password
+  static const String adminEmail = 'test@gmail.com';
+  static const String adminPassword = 'Admin@123';
 
   // Onboarding Texts
   static const String onBoardingTitle1 = 'Choose Your Product';

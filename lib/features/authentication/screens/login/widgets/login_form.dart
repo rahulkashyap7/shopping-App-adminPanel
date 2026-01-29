@@ -1,5 +1,8 @@
+import 'package:ecommerce_admin_panel/features/authentication/controllers/login_controller.dart';
 import 'package:ecommerce_admin_panel/routes/routes.dart';
+import 'package:ecommerce_admin_panel/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:get_x/get.dart';
 import 'package:get_x/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
@@ -13,7 +16,9 @@ class RLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Form(
+      key: controller.loginFormKey,
       child: Padding(
         padding:
         EdgeInsets.symmetric(vertical: RSizes.spaceBtwSections),
@@ -21,16 +26,26 @@ class RLoginForm extends StatelessWidget {
           children: [
             /// Email
             TextFormField(
+              controller: controller.email,
+              validator: RValidator.validateEmail,
               decoration: InputDecoration(
                   prefixIcon: Icon(Iconsax.direct_right),
                   labelText: RTexts.email),
             ),
             SizedBox(height: RSizes.spaceBtwInputFields),
-            TextFormField(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: RTexts.password,
-                suffixIcon: IconButton(onPressed: (){}, icon: Icon(Iconsax.eye_slash)),
+
+            /// Password
+            Obx(
+              () => TextFormField(
+                controller: controller.password,
+                validator: (value) => RValidator.validateEmptyText('Password', value),
+                obscureText: controller.hidePassword.value,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Iconsax.password_check),
+                  labelText: RTexts.password,
+                  suffixIcon: IconButton(onPressed: ()=> controller.hidePassword.value = !controller.hidePassword.value,
+                      icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye)),
+                ),
               ),
             ),
             SizedBox(height: RSizes.spaceBtwInputFields / 2),
@@ -42,7 +57,9 @@ class RLoginForm extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Checkbox(value: true, onChanged: (value){}),
+                    Obx(
+                      () => Checkbox(value: controller.rememberMe.value,
+                          onChanged: (value)=> controller.rememberMe.value = value!)),
                     Text(RTexts.rememberMe),
                   ],
                 ),
@@ -56,7 +73,8 @@ class RLoginForm extends StatelessWidget {
 
             /// Sign In button
             SizedBox(width: double.infinity,
-              child: ElevatedButton(onPressed: (){}, child: Text(RTexts.logIn)),
+              // child: ElevatedButton(onPressed: ()=> controller.emailAndPasswordSignIn(), child: Text(RTexts.logIn)),
+              child: ElevatedButton(onPressed: ()=> controller.registerAdmin(), child: Text(RTexts.logIn)),
             )
           ],
         ),

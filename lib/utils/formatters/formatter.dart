@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 class RFormatter {
-  static String formatData(DateTime date) {
+  static String formatDate(DateTime date) {
     date ??= DateTime.now();
     return DateFormat('dd-MMM-yyyy').format(date);
   }
