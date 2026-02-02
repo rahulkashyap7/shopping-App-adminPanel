@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# 🚀 E-Commerce Admin Panel - Nexus
-=======
 # 🚀 E-Commerce Admin Panel 
->>>>>>> 5fb08c3a20bb96c85f9e2b61655101cd250c70f7
 
 [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 [![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com)
@@ -88,13 +84,7 @@ lib/
 ---
 
 ### 🤝 Contributing
-
-<<<<<<< HEAD
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-repo/ecommerce_admin_panel/issues).
-=======
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-repo/ecommerce_admin_panel).
->>>>>>> 5fb08c3a20bb96c85f9e2b61655101cd250c70f7
-
 ---
 
 Developed with ❤️ by **Rahul Kashyap**
