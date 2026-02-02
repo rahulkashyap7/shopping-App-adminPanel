@@ -58,7 +58,7 @@ class RRoundedImage extends StatelessWidget {
 
     switch (imageType) {
       case ImageType.network:
-        imageWidget = _buildImageWidget();
+        imageWidget = _buildNetworkImage();
         break;
       case ImageType.memory:
         imageWidget = _buildMemoryImage();

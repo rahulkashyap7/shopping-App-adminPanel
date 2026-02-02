@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,17 +19,18 @@ class RDeviceUtils {
   }
 
   static bool isLandscapeOrientation(BuildContext context) {
-      final viewInsets = View.of(context).viewInsets;
-      return viewInsets.bottom ==0;
+    final viewInsets = View.of(context).viewInsets;
+    return viewInsets.bottom == 0;
   }
 
   static bool isPortraitOrientation(BuildContext context) {
-      final viewInsets = View.of(context).viewInsets;
-      return viewInsets.bottom !=0;
+    final viewInsets = View.of(context).viewInsets;
+    return viewInsets.bottom != 0;
   }
 
   static void setFullScreen(bool enable) {
-    SystemChrome.setEnabledSystemUIMode(enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+    SystemChrome.setEnabledSystemUIMode(
+        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
   }
 
   static double getScreenHeight() {
@@ -67,7 +68,8 @@ class RDeviceUtils {
   }
 
   static Future<bool> isPhysicalDevice() async {
-    return defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS;
+    return defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS;
   }
 
   static void vibrate(Duration duration) {
@@ -75,7 +77,8 @@ class RDeviceUtils {
     Future.delayed(duration, () => HapticFeedback.vibrate());
   }
 
-  static Future<void> setPreferredOrientations(List<DeviceOrientation> orientations) async {
+  static Future<void> setPreferredOrientations(
+      List<DeviceOrientation> orientations) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -84,24 +87,25 @@ class RDeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 
   static Future<bool> hasInternetConnection() async {
-    try {
-      final result = await InternetAddress.lookup('example.com');
-      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    } on SocketException catch (_) {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult.contains(ConnectivityResult.none)) {
       return false;
+    } else {
+      return true;
     }
   }
 
   static bool isIOS() {
-    return Platform.isIOS;
+    return defaultTargetPlatform == TargetPlatform.iOS;
   }
 
   static bool isAndroid() {
-    return Platform.isAndroid;
+    return defaultTargetPlatform == TargetPlatform.android;
   }
 
   static bool isDesktopScreen(BuildContext context) {
@@ -109,13 +113,16 @@ class RDeviceUtils {
   }
 
   static bool isTabletScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize && MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
+    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize &&
+        MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
   }
 
   static bool isMobileScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize && MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
+    return MediaQuery.of(context).size.width >= RSizes.tabletScreenSize &&
+        MediaQuery.of(context).size.width < RSizes.desktopScreenSize;
   }
-  static void launchUrl(String url) async{
+
+  static void launchUrl(String url) async {
     if (await canLaunchUrlString(url)) {
       await launchUrlString(url);
     } else {

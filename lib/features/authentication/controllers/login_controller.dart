@@ -13,7 +13,7 @@ import 'package:get_x/get.dart';
 
 import '../../../localization/network_manager/network_manager.dart';
 
-class LoginController extends GetxController{
+class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
   final hidePassword = true.obs;
@@ -23,7 +23,6 @@ class LoginController extends GetxController{
   final email = TextEditingController();
   final password = TextEditingController();
   final loginFormKey = GlobalKey<FormState>();
-
 
   @override
   void onInit() {
@@ -36,29 +35,31 @@ class LoginController extends GetxController{
   Future<void> emailAndPasswordSignIn() async {
     try {
       // Start Loading
-      RFullScreenLoader.openLoadingDialog('Logging you in...', RImages.docerAnimation);
+      RFullScreenLoader.openLoadingDialog(
+          'Logging you in...', RImages.docerAnimation);
 
       // Check Internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected){
+      if (!isConnected) {
         RFullScreenLoader.stopLoading();
         return;
       }
 
       // Form Validation
-      if (!loginFormKey.currentState!.validate()){
+      if (!loginFormKey.currentState!.validate()) {
         RFullScreenLoader.stopLoading();
         return;
       }
 
       // Save Data if remember Me is selected
-      if( rememberMe.value){
+      if (rememberMe.value) {
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
 
       // Login user using Email and Password Authentication
-      await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+      await AuthenticationRepository.instance
+          .loginWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       // Fetch user details and assign to UserController
       final user = await UserController.instance.fetchUserDetails();
@@ -67,14 +68,16 @@ class LoginController extends GetxController{
       RFullScreenLoader.stopLoading();
 
       // If user is not admin, logout and return
-      if(user.role != AppRole.admin) {
+      if (user.role != AppRole.admin) {
         await AuthenticationRepository.instance.logout();
-        RLoaders.errorSnackBar(title: 'Not Authorized', message: 'You are not authorized or do have access. Contact Admin');
-      } else{
+        RLoaders.errorSnackBar(
+            title: 'Not Authorized',
+            message: 'You are not authorized or do have access. Contact Admin');
+      } else {
         // Redirect
         AuthenticationRepository.instance.screenRedirect();
       }
-    } catch (e){
+    } catch (e) {
       RFullScreenLoader.stopLoading();
       RLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
@@ -82,9 +85,10 @@ class LoginController extends GetxController{
 
   /// Handle Registration of admin user
   Future<void> registerAdmin() async {
-    try{
+    try {
       // Start loading
-      RFullScreenLoader.openLoadingDialog('Registering Admin Account...', RImages.docerAnimation);
+      RFullScreenLoader.openLoadingDialog(
+          'Registering Admin Account...', RImages.docerAnimation);
 
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -94,7 +98,8 @@ class LoginController extends GetxController{
       }
 
       // Register user using Email & Password Authentication
-      await AuthenticationRepository.instance.registerWithEmailAndPassword(RTexts.adminEmail, RTexts.adminPassword);
+      await AuthenticationRepository.instance.registerWithEmailAndPassword(
+          RTexts.adminEmail, RTexts.adminPassword);
 
       // Create admin record in the Firestore
       final userRepository = Get.put(UserRepository());
@@ -112,7 +117,7 @@ class LoginController extends GetxController{
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
-    } catch (e){
+    } catch (e) {
       RFullScreenLoader.stopLoading();
       RLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }

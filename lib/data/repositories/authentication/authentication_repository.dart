@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_x/get.dart';
 import '../../../utils/exceptions/platform_exceptions.dart';
 
-class AuthenticationRepository extends GetxController{
+class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   // Firebase Auth Instance
@@ -29,7 +29,7 @@ class AuthenticationRepository extends GetxController{
     final user = _auth.currentUser;
 
     // If the user is logged in
-    if (user != null){
+    if (user != null) {
       // Navigate to the Home
       Get.offAllNamed(RRoutes.dashboard);
     } else {
@@ -38,9 +38,11 @@ class AuthenticationRepository extends GetxController{
   }
 
   // LOGIN
-  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
-    try{
-      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw RFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -55,11 +57,11 @@ class AuthenticationRepository extends GetxController{
   }
 
   // REGISTER
-  Future<UserCredential> registerWithEmailAndPassword(String email, String password)
-  async {
-    try{
-      return await _auth.createUserWithEmailAndPassword(email: email, password:
-      password);
+  Future<UserCredential> registerWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw RFirebaseAuthException(e.code).message;
     } on FirebaseException catch (e) {
@@ -75,7 +77,7 @@ class AuthenticationRepository extends GetxController{
 
   // LOGOUT USER
   Future<void> logout() async {
-    try{
+    try {
       await FirebaseAuth.instance.signOut();
       Get.offAllNamed(RRoutes.login);
     } on FirebaseAuthException catch (e) {

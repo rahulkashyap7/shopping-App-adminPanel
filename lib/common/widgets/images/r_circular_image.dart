@@ -18,7 +18,8 @@ class RCircularImage extends StatelessWidget {
     this.imageType = ImageType.asset,
     this.fit = BoxFit.cover,
     this.padding = RSizes.sm,
-    this.file, this.memoryImage,
+    this.file,
+    this.memoryImage,
   });
 
   final BoxFit? fit;
@@ -37,7 +38,10 @@ class RCircularImage extends StatelessWidget {
       height: height,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        color: backgroundColor ?? (Theme.of(context).brightness == Brightness.dark ? Colors.black : Colors.white),
+        color: backgroundColor ??
+            (Theme.of(context).brightness == Brightness.dark
+                ? Colors.black
+                : Colors.white),
         borderRadius: BorderRadius.circular(width >= height ? width : height),
       ),
       child: _buildImageWidget(),
@@ -65,20 +69,20 @@ class RCircularImage extends StatelessWidget {
     // Apply ClipRReact directly to the image widget
     return ClipRRect(
       borderRadius: BorderRadius.circular(width >= height ? width : height),
-        child: imageWidget,
+      child: imageWidget,
     );
   }
 
   // Function to build the network image widget
   Widget _buildNetworkImage() {
-    if (image != null){
+    if (image != null) {
       return CachedNetworkImage(
         fit: fit,
         color: overlayColor,
         imageUrl: image!,
         errorWidget: (context, url, error) => const Icon(Icons.error),
-        progressIndicatorBuilder: (context, url, downloadProgress) => const
-        RShimmerEffect(width: 55, height: 55),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            const RShimmerEffect(width: 55, height: 55),
       );
     } else {
       return Container();
@@ -88,15 +92,15 @@ class RCircularImage extends StatelessWidget {
   // Function to build container if no image is provided
   Widget _buildMemoryImage() {
     if (memoryImage != null) {
-      return Image(fit: fit, image: MemoryImage(memoryImage!), color:
-      overlayColor);
+      return Image(
+          fit: fit, image: MemoryImage(memoryImage!), color: overlayColor);
     } else {
       return Container();
     }
   }
 
   // Function to build the asset image widget
-  Widget _buildFileImage(){
+  Widget _buildFileImage() {
     if (file != null) {
       // Display image from assets using image widget
       return Image(fit: fit, image: FileImage(file!), color: overlayColor);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get_x/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -40,7 +40,7 @@ class RLoaders {
       shouldIconPulse: true,
       colorText: Colors.white,
       backgroundColor: RColors.primary,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.bottom,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
       icon: const Icon(Iconsax.check, color: RColors.white),
@@ -55,7 +55,7 @@ class RLoaders {
       shouldIconPulse: true,
       colorText: RColors.white,
       backgroundColor: Colors.orange,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.bottom,
       duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: RColors.white),
@@ -70,7 +70,7 @@ class RLoaders {
       shouldIconPulse: true,
       colorText: RColors.white,
       backgroundColor: Colors.red.shade600,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.bottom,
       duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
       icon: const Icon(Iconsax.warning_2, color: RColors.white),
