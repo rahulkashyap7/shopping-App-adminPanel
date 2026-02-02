@@ -1,9 +1,13 @@
+import 'package:ecommerce_admin_panel/features/authentication/controllers/user_controller.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:ecommerce_admin_panel/utils/constants/enums.dart';
 import 'package:ecommerce_admin_panel/utils/constants/image_strings.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:ecommerce_admin_panel/utils/device/device_utility.dart';
+import 'package:ecommerce_admin_panel/utils/popups/shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:get_x/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../images/R_rounded_image.dart';
@@ -16,6 +20,7 @@ class RHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Container(
       decoration: BoxDecoration(
         color: RColors.white,
@@ -48,25 +53,30 @@ class RHeader extends StatelessWidget implements PreferredSizeWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RRoundedImage(
-                  width: 40,
-                  padding: 2,
-                  height: 40,
-                  imageType: ImageType.asset,
-                  image: RImages.userPic
+              Obx(
+                ()=> RRoundedImage(
+                    width: 40,
+                    padding: 2,
+                    height: 40,
+                    imageType: controller.user.value.profilePicture.isNotEmpty ? ImageType.network :ImageType.asset,
+                    image: controller.user.value.profilePicture.isNotEmpty ? controller.user.value.profilePicture : RImages.userPic,
+                ),
               ),
               SizedBox(width: RSizes.sm),
 
               // Name and Email
               if (!RDeviceUtils.isMobileScreen(context))
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Rahul Kashyap', style: Theme.of(context).textTheme.titleLarge),
-                  Text('rahulashyap.global@gmail.com', style: Theme.of(context)
-                      .textTheme.labelMedium),
-                ],
+              Obx(
+                ()=> Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    controller.loading.value ? const RShimmerEffect(width: 50, height: 13) :
+                    Text(controller.user.value.fullName, style: Theme.of(context).textTheme.titleLarge),
+                    controller.loading.value ? const RShimmerEffect(width: 50, height: 13) :
+                    Text(controller.user.value.email, style: Theme.of(context).textTheme.labelMedium),
+                  ],
+                ),
               ),
             ],
           )
