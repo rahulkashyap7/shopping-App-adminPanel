@@ -20,14 +20,16 @@ class RAnimationLoaderWidget extends StatelessWidget {
     required this.animation,
     this.showAction = false,
     this.actionText,
-    this.onActionPressed,
+    this.onActionPressed, this.height, this.width, this.style,
   });
 
   final String text;
+  final TextStyle? style;
   final String animation;
   final bool showAction;
   final String? actionText;
   final VoidCallback? onActionPressed;
+  final double? height, width;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +39,7 @@ class RAnimationLoaderWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-              animation,
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: 300, // Constrain height to prevent vertical overflow
+              animation, height: height ?? MediaQuery.of(context).size.height* 0.5, width: width
             ), // Display Lottie animation
             const SizedBox(height: RSizes.defaultSpace),
             Text(
