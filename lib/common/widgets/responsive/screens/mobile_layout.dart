@@ -1,4 +1,5 @@
 import 'package:ecommerce_admin_panel/common/widgets/layouts/header/header.dart';
+import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../layouts/sidebars/sidebar.dart';
@@ -13,10 +14,10 @@ class MobileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
+        backgroundColor: RColors.primaryBackground,
+        key: scaffoldKey,
         drawer: const RSidebar(),
         appBar: RHeader(scaffoldKey: scaffoldKey),
-        body: body ?? const SizedBox()
-    );
+        body: body ?? const SizedBox());
   }
 }
