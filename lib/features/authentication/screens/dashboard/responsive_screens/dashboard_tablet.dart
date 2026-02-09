@@ -1,3 +1,6 @@
+import 'package:ecommerce_admin_panel/common/widgets/custom_shapes/container/rounded_container.dart';
+import 'package:ecommerce_admin_panel/features/authentication/screens/dashboard/widgets/order_status_graph.dart';
+import 'package:ecommerce_admin_panel/features/authentication/screens/dashboard/widgets/weekly_sales.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -27,33 +30,31 @@ class DashboardTabletScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Expanded(
-                          child: RDashboardCard(
-                              title: 'Sales Total',
-                              subTitle: '\$365.6',
-                              stats: 25)),
+                      Expanded(child: RDashboardCard(title: 'Sales Total', subTitle: '\$365.6', stats: 25)),
                       SizedBox(width: RSizes.spaceBtwItems),
-                      Expanded(
-                          child: RDashboardCard(
-                              title: 'Average Order Value',
-                              subTitle: '\$25',
-                              stats: 15)),
+                      Expanded(child: RDashboardCard(title: 'Average Order Value', subTitle: '\$25', stats: 15)),
                     ],
                   ),
                   SizedBox(height: RSizes.spaceBtwItems),
                   Row(
                     children: [
-                      Expanded(
-                          child: RDashboardCard(
-                              title: 'Total Orders',
-                              subTitle: '36',
-                              stats: 44)),
+                      Expanded(child: RDashboardCard(title: 'Total Orders', subTitle: '36', stats: 44)),
                       SizedBox(width: RSizes.spaceBtwItems),
-                      Expanded(
-                          child: RDashboardCard(
-                              title: 'Visitors', subTitle: '25,035', stats: 2)),
+                      Expanded(child: RDashboardCard(title: 'Visitors', subTitle: '25,035', stats: 2)),
                     ],
                   ),
+                  SizedBox(height: RSizes.spaceBtwItems),
+
+                  /// Bar Graph
+                  WeeklySalesGraph(),
+                  SizedBox(height: RSizes.spaceBtwItems),
+
+                  /// Orders
+                  RRoundedContainer(),
+                  SizedBox(height: RSizes.spaceBtwItems),
+
+                  /// Pie Chart
+                  OrderStatusPieChart(),
                 ],
               )
             ],
