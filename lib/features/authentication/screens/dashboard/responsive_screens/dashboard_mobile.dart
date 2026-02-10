@@ -2,6 +2,7 @@ import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
 import '../../../../../common/widgets/custom_shapes/container/rounded_container.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../table/data_table.dart';
 import '../widgets/dashboard_card.dart';
 import '../widgets/order_status_graph.dart';
 import '../widgets/weekly_sales.dart';
@@ -38,7 +39,16 @@ class DashboardMobileScreen extends StatelessWidget {
               SizedBox(height: RSizes.spaceBtwItems),
 
               /// Orders
-              RRoundedContainer(),
+              RRoundedContainer(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Recent Order', style: Theme.of(context).textTheme.headlineSmall),
+                    const SizedBox(height: RSizes.spaceBtwSections),
+                    const DashboardOrderTable(),
+                  ],
+                ),
+              ),
               SizedBox(height: RSizes.spaceBtwItems),
 
               /// Pie Chart

@@ -63,7 +63,7 @@ class WeeklySalesGraph extends StatelessWidget {
     );
   }
 
-  FlTitlesData? buildFlTitlesData() {
+  FlTitlesData? buildFlTitlesData()  {
     return FlTitlesData(
       show: true,
       bottomTitles: AxisTitles(

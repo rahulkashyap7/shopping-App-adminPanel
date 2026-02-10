@@ -5,6 +5,7 @@ import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
+import '../table/data_table.dart';
 import '../widgets/dashboard_card.dart';
 
 class DashboardTabletScreen extends StatelessWidget {
@@ -26,35 +27,44 @@ class DashboardTabletScreen extends StatelessWidget {
               const SizedBox(height: RSizes.spaceBtwSections),
 
               // Cards
-              const Column(
+              Column(
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Expanded(child: RDashboardCard(title: 'Sales Total', subTitle: '\$365.6', stats: 25)),
                       SizedBox(width: RSizes.spaceBtwItems),
                       Expanded(child: RDashboardCard(title: 'Average Order Value', subTitle: '\$25', stats: 15)),
                     ],
                   ),
-                  SizedBox(height: RSizes.spaceBtwItems),
-                  Row(
+                  const SizedBox(height: RSizes.spaceBtwItems),
+                  const Row(
                     children: [
                       Expanded(child: RDashboardCard(title: 'Total Orders', subTitle: '36', stats: 44)),
                       SizedBox(width: RSizes.spaceBtwItems),
                       Expanded(child: RDashboardCard(title: 'Visitors', subTitle: '25,035', stats: 2)),
                     ],
                   ),
-                  SizedBox(height: RSizes.spaceBtwItems),
+                  const SizedBox(height: RSizes.spaceBtwItems),
 
                   /// Bar Graph
-                  WeeklySalesGraph(),
-                  SizedBox(height: RSizes.spaceBtwItems),
+                  const WeeklySalesGraph(),
+                  const SizedBox(height: RSizes.spaceBtwItems),
 
                   /// Orders
-                  RRoundedContainer(),
-                  SizedBox(height: RSizes.spaceBtwItems),
+                  RRoundedContainer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Recent Order', style: Theme.of(context).textTheme.headlineSmall),
+                        const SizedBox(height: RSizes.spaceBtwSections),
+                        const DashboardOrderTable(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: RSizes.spaceBtwItems),
 
                   /// Pie Chart
-                  OrderStatusPieChart(),
+                  const OrderStatusPieChart(),
                 ],
               )
             ],

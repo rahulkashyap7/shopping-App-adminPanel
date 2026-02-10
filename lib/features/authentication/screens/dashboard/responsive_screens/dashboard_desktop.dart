@@ -1,8 +1,8 @@
 import 'package:ecommerce_admin_panel/common/widgets/custom_shapes/container/rounded_container.dart';
+import 'package:ecommerce_admin_panel/features/authentication/screens/dashboard/table/data_table.dart';
 import 'package:ecommerce_admin_panel/features/authentication/screens/dashboard/widgets/order_status_graph.dart';
 import 'package:ecommerce_admin_panel/features/authentication/screens/dashboard/widgets/weekly_sales.dart';
 import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../widgets/dashboard_card.dart';
@@ -64,7 +64,16 @@ class DashboardDesktopScreen extends StatelessWidget {
                         SizedBox(height: RSizes.spaceBtwSections),
 
                         /// Orders
-                        RRoundedContainer(),
+                        RRoundedContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Recent Order', style: Theme.of(context).textTheme.headlineSmall),
+                              const SizedBox(height: RSizes.spaceBtwSections),
+                              const DashboardOrderTable(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
