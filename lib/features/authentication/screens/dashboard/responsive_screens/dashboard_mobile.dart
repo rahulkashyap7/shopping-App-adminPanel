@@ -58,6 +58,5 @@ class DashboardMobileScreen extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

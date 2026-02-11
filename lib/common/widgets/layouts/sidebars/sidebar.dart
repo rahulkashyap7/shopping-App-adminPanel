@@ -37,25 +37,12 @@ class RSidebar extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text('MENU',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .apply(letterSpacingDelta: 1.2)),
+                        style: Theme.of(context).textTheme.bodySmall!.apply(letterSpacingDelta: 1.2)),
 
                     // MENU ITEMS
-                    RMenuItem(
-                        route: RRoutes.login,
-                        icon: Iconsax.status,
-                        itemName: 'Dashboard'),
-                    RMenuItem(
-                        route: RRoutes.forgetPassword,
-                        icon: Iconsax.image,
-                        itemName: 'Media'),
-                    RMenuItem(
-                      route: RRoutes.resetPassword,
-                      icon: Iconsax.picture_frame,
-                      itemName: 'Banner',
-                    )
+                    RMenuItem(route: RRoutes.dashboard, icon: Iconsax.status, itemName: 'Dashboard'),
+                    RMenuItem(route: RRoutes.media, icon: Iconsax.image, itemName: 'Media'),
+                    // RMenuItem(route: RRoutes.resetPassword, icon: Iconsax.picture_frame, itemName: 'Banner',)
                   ],
                 ),
               )
