@@ -10,7 +10,7 @@ enum ProductType { single, variable }
 
 enum ProductVisibility { published, hidden }
 
-enum MediaCategory { folder, banners, brands, categories, products, users }
+enum MediaCategory { folders, banners, brands, categories, products, users }
 
 enum OrderStatus { processing, shipped, delivered, pending, cancelled }
 

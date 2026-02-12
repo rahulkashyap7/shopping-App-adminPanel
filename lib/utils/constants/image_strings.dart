@@ -1,8 +1,18 @@
 class RImages {
+
+
   // App Logos
   static const String darkAppLogo = 'assets/logos/login-logo.png';
   static const String lightAppLogo = 'assets/logos/login-logo.png';
   static const String loginLogo = 'assets/logos/login-logo.png';
+
+  // -- Default Images
+  static const String defaultImage = 'assets/images/content/default-image-icon.png';
+  static const String defaultSingleImageIcon = 'assets/images/content/default-images-icon.png';
+  static const String defaultMultiImageIcon = 'assets/images/content/default-images-icon.png';
+  static const String defaultAttributeColorsImageIcon = 'assets/images/content/tiny-color-palette.png';
+  static const String defaultVariationImageIcon = 'assets/images/content/tiny-man-maintaining-a-work-life-balance.png';
+
 
   // Social logo
   static const String facebook = 'assets/logos/facebook.png';
