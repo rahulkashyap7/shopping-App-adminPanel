@@ -80,8 +80,8 @@ class RImages {
       "assets/images/animations/141397-loading-juggle.json";
   static const String cloudUploadingAnimation =
       "assets/images/animations/cloud-uploading-animation.json";
-  static const String loaderAnimation =
-      "assets/images/animations/loader-animation.json";
+  static const String loaderAnimation = "assets/images/animations/loader-animation.json";
+  static const String uploadingImageIllustration = "assets/images/animations/uploading-files-from-computer-to-cloud-storage.gif";
 
   // Category Screen
   static const String sportIcon =

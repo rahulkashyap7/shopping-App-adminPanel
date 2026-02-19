@@ -6,6 +6,21 @@ class RTexts {
   static const String adminEmail = 'test@gmail.com';
   static const String adminPassword = 'Admin@123';
 
+  // Storage Paths
+  static const String bannerStoragePath = '/Banners';
+  static const String brandsStoragePath = '/Brands';
+  static const String categoriesStoragePath = '/Categories';
+  static const String productsStoragePath = '/Products';
+  static const String usersStoragePath = '/Users';
+
+  // Global Texts
+  static const String and = "and";
+  static const String skip = "Skip";
+  static const String done = "Done";
+  static const String submit = "Submit";
+  static const String appName = "eCommerce Admin Panel";
+  static const String rContinue = "Continue";
+
   // Onboarding Texts
   static const String onBoardingTitle1 = 'Choose Your Product';
   static const String onBoardingTitle2 = 'Select Payment Method';
@@ -17,7 +32,6 @@ class RTexts {
 
   static const String homeAppbarTitle = 'Good Day for shopping';
   static const String homeAppbarSubTitle = 'Rahul Kashyap';
-  static const String appName = 'Admin Panel';
 
   // Login Title & Subtitle
   static const String loginTitle = 'Welcome Back,';
@@ -41,7 +55,6 @@ class RTexts {
   static const String orSignUpWith = "or sign up with";
   static const String iAgreeTo = "I agree to";
   static const String privacyPolicy = "privacy Policy";
-  static const String and = "and";
   static const String termsOfUse = "Terms of use";
   static const String verificationCode = "Verification Code";
   static const String resendEmail = "Resend Email";
@@ -69,7 +82,5 @@ class RTexts {
   static const String yourAccountCreatedSubTitle =
       "Welcome to your unlimited shopping destination: Your Account is created, unleash the joy of seamless online shopping!";
 
-  static const String submit = "Submit";
-  static const String done = "Done";
 
 }
