@@ -1,10 +1,16 @@
 import 'package:ecommerce_admin_panel/common/widgets/custom_shapes/container/rounded_container.dart';
+import 'package:ecommerce_admin_panel/common/widgets/loaders/animation_loader.dart';
+import 'package:ecommerce_admin_panel/common/widgets/loaders/loaders.dart';
 import 'package:ecommerce_admin_panel/features/media/controllers/media_controller.dart';
+import 'package:ecommerce_admin_panel/features/media/models/image_model.dart';
+import 'package:ecommerce_admin_panel/features/media/screens/widgets/view_image_details.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get_x/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/images/R_rounded_image.dart';
+import '../../../../common/widgets/loaders/loader_animation.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/enums.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -29,6 +35,7 @@ class MediaContent extends StatelessWidget {
               MediaFolderDropdown(onChanged: (MediaCategory? newValue) {
                 if (newValue != null){
                   controller.selectedPath.value = newValue;
+                  controller.getMediaImages();
                 }
               })
             ],
@@ -37,73 +44,109 @@ class MediaContent extends StatelessWidget {
 
           /// Show Media
 
-          Wrap(
-            alignment: WrapAlignment.start,
-            spacing: RSizes.spaceBtwItems / 2,
-            runSpacing: RSizes.spaceBtwItems / 2,
-            children: [
-              RRoundedImage(
-                width: 90,
-                height: 90,
-                padding: RSizes.sm,
-                imageType: ImageType.asset,
-                image: RImages.adidas,
-                backgroundColor: RColors.primaryBackground,
-              ),
-              RRoundedImage(
-                width: 90,
-                height: 90,
-                padding: RSizes.sm,
-                imageType: ImageType.asset,
-                image: RImages.adidas,
-                backgroundColor: RColors.primaryBackground,
-              ),
-              RRoundedImage(
-                width: 90,
-                height: 90,
-                padding: RSizes.sm,
-                imageType: ImageType.asset,
-                image: RImages.adidas,
-                backgroundColor: RColors.primaryBackground,
-              ),
-              RRoundedImage(
-                width: 90,
-                height: 90,
-                padding: RSizes.sm,
-                imageType: ImageType.asset,
-                image: RImages.adidas,
-                backgroundColor: RColors.primaryBackground,
-              ),
-              RRoundedImage(
-                width: 90,
-                height: 90,
-                padding: RSizes.sm,
-                imageType: ImageType.asset,
-                image: RImages.adidas,
-                backgroundColor: RColors.primaryBackground,
-              ),
-            ],
-          ),
+          Obx(
+            () {
+              // Get Selected Folder Images
+              List<ImageModel> images = _getSelectedFolderImages(controller);
 
-          /// Load More Media Button
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: RSizes.spaceBtwSections),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              //Loader
+              if (controller.loading.value && images.isEmpty) return const RLoaderAnimation();
+
+              // Empty Widget
+              if (images.isEmpty) return _buildEmptyAnimationWidget(context);
+
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: RSizes.buttonWidth,
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    label: Text('Load More'),
-                    icon: Icon(Iconsax.arrow_down),
+                Wrap(
+                  alignment: WrapAlignment.start,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: images.map((image) => GestureDetector(
+                    onTap: () => Get.dialog(ImagePopup(image: image)),
+                    child: SizedBox(
+                      width: 140,
+                      height: 180,
+                      child: Column(
+                        children: [
+                          _buildSimpleList(image),
+                          Expanded(child: Padding(padding: EdgeInsets.symmetric(horizontal: RSizes.sm),
+                          child: Text(image.filename, maxLines: 1, overflow: TextOverflow.ellipsis),
+                          ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )).toList(),
+                ),
+
+                /// Load More Media Button
+                if (!controller.loading.value)
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: RSizes.spaceBtwSections),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: RSizes.buttonWidth,
+                        child: ElevatedButton.icon(
+                          onPressed: () => controller.loadMoreMediaImages(),
+                          label: Text('Load More'),
+                          icon: Icon(Iconsax.arrow_down),
+                        ),
+                      )
+                    ],
                   ),
                 )
               ],
-            ),
-          )
+            );
+            },
+          ),
+
+
         ],
       ),
     );
   }
+
+}
+
+List<ImageModel> _getSelectedFolderImages(MediaController controller) {
+  List<ImageModel> images = [];
+  if (controller.selectedPath.value == MediaCategory.banners){
+    images = controller.allBannerImages.where((images) => images.url.isNotEmpty).toList();
+  } else if (controller.selectedPath.value == MediaCategory.brands) {
+    images = controller.allBrandImages.where((images) => images.url.isNotEmpty).toList();
+  } else if (controller.selectedPath.value == MediaCategory.categories) {
+    images = controller.allCategoryImages.where((images) => images.url.isNotEmpty).toList();
+  } else if (controller.selectedPath.value == MediaCategory.products) {
+    images = controller.allProductImages.where((images) => images.url.isNotEmpty).toList();
+  } else if (controller.selectedPath.value == MediaCategory.users) {
+    images = controller.allUserImages.where((images) => images.url.isNotEmpty).toList();
+  }
+  return images;
+}
+
+Widget _buildEmptyAnimationWidget(BuildContext context) {
+  return Padding(padding: EdgeInsets.symmetric(vertical: RSizes.lg * 3),
+    child: RAnimationLoaderWidget(
+      width: 300,
+      height: 300,
+      text: 'Select your Desired Folder',
+      animation: RImages.packageAnimation,
+      style: Theme.of(context).textTheme.titleLarge,
+    ),
+  );
+}
+
+Widget _buildSimpleList(ImageModel image) {
+  return RRoundedImage(
+    width: 140,
+    height: 140,
+    padding: RSizes.sm,
+    image: image.url,
+    imageType: ImageType.network,
+    margin: RSizes.spaceBtwItems / 2,
+    backgroundColor: RColors.primaryBackground,
+  );
 }
