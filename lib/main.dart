@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get_x/get_core/src/get_main.dart';
 import 'package:get_x/get_instance/src/extension_instance.dart';
-import 'package:url_strategy/url_strategy.dart';
 import 'app.dart';
 import 'data/repositories/authentication/authentication_repository.dart';
 import 'bindings/general_bindings.dart';

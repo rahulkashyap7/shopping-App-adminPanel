@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_x/get.dart';
+import '../../common/widgets/loaders/circular_loader.dart';
 import '../constants/colors.dart';
 import '../helpers/helper_function.dart';
 import '../../common/widgets/loaders/animation_loader.dart';
@@ -40,9 +41,21 @@ class RFullScreenLoader {
     );
   }
 
+  static void popUpCircular() {
+    Get.defaultDialog(
+      title: '',
+      barrierDismissible: false,
+      content: const PopScope(
+        canPop: false,
+        child: RCircularLoader(),
+      ),
+      backgroundColor: Colors.transparent,
+    );
+  }
+
   /// Stop the currently open loading dialog.
   /// This method doesn't return anything.
-  static stopLoading() {
+  static void stopLoading() {
     Navigator.of(Get.overlayContext!)
         .pop(); // Close the dialog using the Navigator
   }

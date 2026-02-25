@@ -36,39 +36,44 @@ class MediaController extends GetxController {
 
   // Get Images
   void getMediaImages() async {
-    try{
-      loading.value = true;
-
+    try {
       RxList<ImageModel> targetList = <ImageModel>[].obs;
 
-      if (selectedPath.value == MediaCategory.banners && allBrandImages.isNotEmpty){
+      if (selectedPath.value == MediaCategory.banners) {
         targetList = allBannerImages;
-      } else if (selectedPath.value == MediaCategory.brands && allBrandImages.isNotEmpty) {
+      } else if (selectedPath.value == MediaCategory.brands) {
         targetList = allBrandImages;
-      } else if (selectedPath.value == MediaCategory.categories && allCategoryImages.isNotEmpty) {
+      } else if (selectedPath.value == MediaCategory.categories) {
         targetList = allCategoryImages;
-      } else if (selectedPath.value == MediaCategory.products && allProductImages.isNotEmpty) {
+      } else if (selectedPath.value == MediaCategory.products) {
         targetList = allProductImages;
-      } else if (selectedPath.value == MediaCategory.users && allUserImages.isNotEmpty) {
+      } else if (selectedPath.value == MediaCategory.users) {
         targetList = allUserImages;
       }
 
-      final images = await mediaRepository.fetchImagesFromDatabase(selectedPath.value, initialLoadCount);
+      if (targetList.isNotEmpty) return;
+
+      loading.value = true;
+
+      final images = await mediaRepository.fetchImagesFromDatabase(
+          selectedPath.value, initialLoadCount);
       targetList.assignAll(images);
 
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      RLoaders.errorSnackBar(title: 'Oh Snap!', message: 'Unable to fetch Images, Something went wrong. Try again');
+      RLoaders.errorSnackBar(
+          title: 'Oh Snap!',
+          message: 'Unable to fetch Images, Something went wrong. Try again');
     }
   }
 
   void loadMoreMediaImages() async {
-    try{
+    try {
       loading.value = true;
       RxList<ImageModel> targetList = <ImageModel>[].obs;
 
-      if (selectedPath.value == MediaCategory.banners){
+      if (selectedPath.value == MediaCategory.banners) {
         targetList = allBannerImages;
       } else if (selectedPath.value == MediaCategory.brands) {
         targetList = allBrandImages;
@@ -81,13 +86,17 @@ class MediaController extends GetxController {
       }
 
       final images = await mediaRepository.loadMoreImagesFromDatabase(
-          selectedPath.value, initialLoadCount, targetList.last.createdAt ?? DateTime.now());
-      targetList.assignAll(images);
+          selectedPath.value,
+          loadMoreCount,
+          targetList.last.createdAt ?? DateTime.now());
+      targetList.addAll(images);
 
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      RLoaders.errorSnackBar(title: 'Oh Snap!', message: 'Unable to fetch Images, Something went wrong. Try again');
+      RLoaders.errorSnackBar(
+          title: 'Oh Snap!',
+          message: 'Unable to fetch Images, Something went wrong. Try again');
     }
   }
 
@@ -244,5 +253,70 @@ class MediaController extends GetxController {
         path = 'Others';
     }
     return path;
+  }
+
+  /// Popup confirmation to remove cloud image
+  void removeCloudImageConfirmation(ImageModel image) {
+    // Delete confirmation
+    RDialogs.defaultDialog(
+        context: Get.context!,
+        content: 'Are you sure you want to delete this image?',
+        onConfirm: () {
+          // Close the confirmation Dialog using native Navigator
+          Navigator.of(Get.overlayContext!).pop();
+
+          removeCloudImage(image);
+        });
+  }
+
+  void removeCloudImage(ImageModel image) async {
+    try {
+      // Show Loader over the Image Detail popup
+      RFullScreenLoader.popUpCircular();
+
+      // Delete Image
+      await mediaRepository.deleteFileFromStorage(image);
+
+      // Get the list and update it
+      RxList<ImageModel> targetList;
+
+      // Check the selected category and update the list
+      switch (selectedPath.value) {
+        case MediaCategory.banners:
+          targetList = allBannerImages;
+          break;
+        case MediaCategory.brands:
+          targetList = allBrandImages;
+          break;
+        case MediaCategory.categories:
+          targetList = allCategoryImages;
+          break;
+        case MediaCategory.products:
+          targetList = allProductImages;
+          break;
+        case MediaCategory.users:
+          targetList = allUserImages;
+          break;
+        default:
+          return;
+      }
+
+      // Remove from the list
+      targetList.remove(image);
+      update();
+
+      // Stop the loader
+      RFullScreenLoader.stopLoading();
+
+      // Close the Image Detail popup (it is now the topmost route)
+      Navigator.of(Get.overlayContext!).pop();
+
+      RLoaders.successSnackBar(
+          title: 'Image Deleted',
+          message: 'Image successfully deleted from your cloud storage');
+    } catch (e) {
+      RFullScreenLoader.stopLoading();
+      RLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
   }
 }

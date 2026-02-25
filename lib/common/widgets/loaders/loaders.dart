@@ -6,10 +6,10 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/helpers/helper_function.dart';
 
 class RLoaders {
-  static hideSnackBar() =>
+  static void hideSnackBar() =>
       ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
 
-  static customToast({required message}) {
+  static void customToast({required String message}) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
         elevation: 0,
@@ -21,8 +21,8 @@ class RLoaders {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: RHelperFunctions.isDarkMode(Get.context!)
-                ? RColors.darkerGrey.withOpacity(0.9)
-                : RColors.grey.withOpacity(0.9),
+                ? RColors.darkerGrey.withValues(alpha: 0.9)
+                : RColors.grey.withValues(alpha: 0.9),
           ),
           child: Center(
               child: Text(message,
@@ -32,48 +32,75 @@ class RLoaders {
     );
   }
 
-  static successSnackBar({required title, message = '', duration = 3}) {
-    Get.snackbar(
-      title,
-      message,
-      isDismissible: true,
-      shouldIconPulse: true,
-      colorText: Colors.white,
+  static void _showSnackBar({
+    required String title,
+    required String message,
+    required Color backgroundColor,
+    required IconData icon,
+    int duration = 3,
+  }) {
+    final context = Get.context;
+    if (context == null) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(icon, color: Colors.white),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold)),
+                  if (message.isNotEmpty)
+                    Text(message,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12)),
+                ],
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: backgroundColor,
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.all(20),
+        duration: Duration(seconds: duration),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 6,
+      ),
+    );
+  }
+
+  static void successSnackBar(
+      {required dynamic title, dynamic message = '', int duration = 3}) {
+    _showSnackBar(
+      title: title.toString(),
+      message: message.toString(),
       backgroundColor: RColors.primary,
-      snackPosition: SnackPosition.bottom,
-      duration: Duration(seconds: duration),
-      margin: const EdgeInsets.all(10),
-      icon: const Icon(Iconsax.check, color: RColors.white),
+      icon: Iconsax.check,
+      duration: duration,
     );
   }
 
-  static warningSnackBar({required title, message = ''}) {
-    Get.snackbar(
-      title,
-      message,
-      isDismissible: true,
-      shouldIconPulse: true,
-      colorText: RColors.white,
+  static void warningSnackBar({required dynamic title, dynamic message = ''}) {
+    _showSnackBar(
+      title: title.toString(),
+      message: message.toString(),
       backgroundColor: Colors.orange,
-      snackPosition: SnackPosition.bottom,
-      duration: const Duration(seconds: 3),
-      margin: const EdgeInsets.all(20),
-      icon: const Icon(Iconsax.warning_2, color: RColors.white),
+      icon: Iconsax.warning_2,
     );
   }
 
-  static errorSnackBar({required title, message = ''}) {
-    Get.snackbar(
-      title,
-      message,
-      isDismissible: true,
-      shouldIconPulse: true,
-      colorText: RColors.white,
+  static void errorSnackBar({required dynamic title, dynamic message = ''}) {
+    _showSnackBar(
+      title: title.toString(),
+      message: message.toString(),
       backgroundColor: Colors.red.shade600,
-      snackPosition: SnackPosition.bottom,
-      duration: const Duration(seconds: 3),
-      margin: const EdgeInsets.all(20),
-      icon: const Icon(Iconsax.warning_2, color: RColors.white),
+      icon: Iconsax.warning_2,
     );
   }
 }
