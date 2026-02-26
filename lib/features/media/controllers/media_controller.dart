@@ -2,6 +2,9 @@ import 'dart:typed_data';
 import 'package:ecommerce_admin_panel/common/widgets/loaders/loaders.dart';
 import 'package:ecommerce_admin_panel/data/services.cloud_storage/media_repository.dart';
 import 'package:ecommerce_admin_panel/features/media/models/image_model.dart';
+import 'package:ecommerce_admin_panel/features/media/screens/widgets/media_content.dart';
+import 'package:ecommerce_admin_panel/features/media/screens/widgets/media_uploader.dart';
+import 'package:ecommerce_admin_panel/utils/constants/colors.dart';
 import 'package:ecommerce_admin_panel/utils/constants/image_strings.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:ecommerce_admin_panel/utils/constants/text_strings.dart';
@@ -318,5 +321,32 @@ class MediaController extends GetxController {
       RFullScreenLoader.stopLoading();
       RLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
+  }
+
+  // Image Selection Bottom Sheet
+  Future<List<ImageModel>?> selectImageFromMedia({List<String>? selectedUrls, bool allowSelection = true, bool multipleSelection = false}) async {
+    showImageUploaderSection.value = true;
+
+    List<ImageModel>? selectedImages = await Get.bottomSheet<List<ImageModel>>(
+      isScrollControlled: true,
+      backgroundColor: RColors.primaryBackground,
+      FractionallySizedBox(
+        heightFactor: 1,
+        child: SingleChildScrollView(
+          child: Padding(padding: EdgeInsets.all(RSizes.defaultSpace),
+          child: Column(
+            children: [
+              MediaUploader(),
+              MediaContent(
+                allowSelection: allowSelection,
+                alreadySelectedUrls: selectedUrls ?? [],
+                allowMultipleSelection: multipleSelection,
+              ),
+            ],
+          ),),
+        ),
+      ),
+    );
+    return selectedImages;
   }
 }
