@@ -7,10 +7,7 @@ import 'package:ecommerce_admin_panel/utils/constants/enums.dart';
 import 'package:ecommerce_admin_panel/utils/constants/sizes.dart';
 import 'package:ecommerce_admin_panel/utils/device/device_utility.dart';
 import 'package:flutter/material.dart';
-import 'package:get_x/get_core/src/get_main.dart';
-import 'package:get_x/get_navigation/src/extension_navigation.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:web/web.dart' hide Text;
 import 'package:clipboard/clipboard.dart';
 import '../../models/image_model.dart';
 
@@ -23,11 +20,11 @@ class ImagePopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Dialog(
-        // Define the shape of the dialog.
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(RSizes.borderRadiusLg)),
+    return Dialog(
+      // Define the shape of the dialog.
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(RSizes.borderRadiusLg)),
+      child: SingleChildScrollView(
         child: RRoundedContainer(
           // Set the width of the rounded container based on the screen size.
           width: RDeviceUtils.isDesktopScreen(context)
@@ -38,7 +35,7 @@ class ImagePopup extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              Center(
                 child: Stack(
                   children: [
                     // Display the image with rounded container
@@ -59,8 +56,8 @@ class ImagePopup extends StatelessWidget {
                         top: 0,
                         right: 0,
                         child: IconButton(
-                            onPressed: () => Get.back(),
-                            icon: Icon(Iconsax.close_circle))),
+                            onPressed: () => Navigator.of(context).pop(),
+                            icon: const Icon(Iconsax.close_circle))),
                   ],
                 ),
               ),
@@ -113,8 +110,10 @@ class ImagePopup extends StatelessWidget {
                   SizedBox(
                     width: 300,
                     child: TextButton(
-                        onPressed: () => MediaController.instance.removeCloudImageConfirmation(image),
-                        child: Text('Delete Image', style: TextStyle(color: Colors.red))),
+                        onPressed: () => MediaController.instance
+                            .removeCloudImageConfirmation(image),
+                        child: Text('Delete Image',
+                            style: TextStyle(color: Colors.red))),
                   )
                 ],
               )
