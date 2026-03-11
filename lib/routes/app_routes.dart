@@ -14,5 +14,11 @@ class RAppRoute {
     GetPage(name: RRoutes.resetPassword, page: () => const ResetPasswordScreen()),
     GetPage(name: RRoutes.dashboard, page: () => const DashboardScreen(), middlewares: [RRouteMiddleware()]),
     GetPage(name: RRoutes.media, page: () => const MediaScreen(), middlewares: [RRouteMiddleware()]),
+
+    // Categories
+    GetPage(name: RRoutes.categories, page: () => const CategoriesScreen(), middlewares: [RRouteMiddleware()]),
+    GetPage(name: RRoutes.createCategory, page: () => const CreateCategoryScreen(), middlewares: [RRouteMiddleware()]),
+    GetPage(name: RRoutes.editCategory, page: () => const EditCategoryScreen(), middlewares: [RRouteMiddleware()]),
+
   ];
 }

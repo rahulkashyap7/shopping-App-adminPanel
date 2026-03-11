@@ -42,6 +42,7 @@ class RSidebar extends StatelessWidget {
                     // MENU ITEMS
                     RMenuItem(route: RRoutes.dashboard, icon: Iconsax.status, itemName: 'Dashboard'),
                     RMenuItem(route: RRoutes.media, icon: Iconsax.image, itemName: 'Media'),
+                    RMenuItem(route: RRoutes.categories, icon: Iconsax.category_2, itemName: 'Categories'),
                     // RMenuItem(route: RRoutes.resetPassword, icon: Iconsax.picture_frame, itemName: 'Banner',)
                   ],
                 ),

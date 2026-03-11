@@ -6,7 +6,13 @@ class RRoutes {
   static const dashboard = '/dashboard';
   static const media = '/media';
 
+  static const categories = '/categories';
+  static const createCategory = '/createCategory';
+  static const editCategory = '/editCategory';
+
   static List sidebarMenuItems = [
-    dashboard
+    dashboard,
+    media,
+    categories,
   ];
 }
